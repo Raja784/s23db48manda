@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sugarRouter = require('./routes/sugar');
 var boardRouter = require('./routes/board');
-var selenpmctorRouter = require('./routes/selector');
+var selectorRouter = require('./routes/selector');
 
 
 var app = express();
