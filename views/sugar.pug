@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1= title
+    -
+     let sugar  = [{"sugar_Name": "Brownsugar", "sugar_form": "crystal", "Cost": "10000",}, 
+     {"sugar_Name": "Whitesugar", "sugar_form": "crystal", "Cost": "20000",},  
+     {"sugar_Name": "crystalsugar", "sugar_form": "soild crystal", "Cost": "10000"},]
+    div(class= "container-fluid")
+        div(class = "row")  
+            each item, index in sugar 
+                div(class= "col-sm-2", onclick=`sugar(${index})`) sugar_Name:#{item.sugar_Name}
+                div(class= "col-sm-2",onclick=`sugar(${index})`) sugar_form:  #{item.sugar_form}
+                div(class= "col-sm-2", onclick=`sugar(${index})`) Cost:   #{item.Cost}
+                
+    script.
+     function sugar(Index){
+        alert(`you have selected ${Index + 1}`)
+     }
+
