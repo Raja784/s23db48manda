@@ -9,6 +9,10 @@ var usersRouter = require('./routes/users');
 var sugarRouter = require('./routes/sugar');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
+
+var sugar = require("./models/sugar");
+
 
 
 var app = express();
@@ -28,14 +32,25 @@ app.use('/users', usersRouter);
 app.use('/sugar', sugarRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
+
+require('dotenv').config();
+const connectionString =
+  process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect("mongodb+srv://mandava:sairupa@cluster0.soxyx5x.mongodb.net/test",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -44,5 +59,32 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function () {
+  console.log("Connection to DB succeeded")
+});
+
+
+// We can seed the collection if needed on server start
+async function recreateDB() {
+  // Delete everything
+  await sugar.deleteMany();
+  let instance1 = new
+    sugar({ sugar_Name: "Brownsugar", sugar_form: "crystal", cost: 10000 });
+  let instance2 = new
+    sugar({ sugar_Name: "Whitesugar", sugar_form: "crystal", cost: 20000 });
+  let instance3 = new
+    sugar({ sugar_Name: "crystalsugar", sugar_form: "soild crystal", cost: 10000 });
+  instance1.save().then(() => { console.log('First Object is created'); }).catch((e) => { console.log('There was an error', e.message); });
+  instance2.save().then(() => { console.log('Second Object is created'); }).catch((e) => { console.log('There was an error', e.message); });
+  instance3.save().then(() => { console.log('Third Object is created'); }).catch((e) => { console.log('There was an error', e.message); });
+}
+let reseed = true;
+if (reseed) { recreateDB(); }
+
 
 module.exports = app;
