@@ -2,13 +2,15 @@ extends layout
 
 block content
     h1= title
-    -
-     let sugar  = [{"sugar_Name": "Brownsugar", "sugar_form": "crystal", "Cost": "10000",}, 
-     {"sugar_Name": "Whitesugar", "sugar_form": "crystal", "Cost": "20000",},  
-     {"sugar_Name": "crystalsugar", "sugar_form": "soild crystal", "Cost": "10000"},]
+    
+    //-
+     //let sugar  = [{"sugar_Name": "Brownsugar", "sugar_form": "crystal", "Cost": "10000",}, 
+     //{"sugar_Name": "Whitesugar", "sugar_form": "crystal", "Cost": "20000",},  
+     //{"sugar_Name": "crystalsugar", "sugar_form": "soild crystal", "Cost": "10000"},] 
+    - let result = results
     div(class= "container-fluid")
         div(class = "row")  
-            each item, index in sugar 
+            each item, index in results 
                 div(class= "col-sm-2", onclick=`sugar(${index})`) sugar_Name:#{item.sugar_Name}
                 div(class= "col-sm-2",onclick=`sugar(${index})`) sugar_form:  #{item.sugar_form}
                 div(class= "col-sm-2", onclick=`sugar(${index})`) Cost:   #{item.Cost}

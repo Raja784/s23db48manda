@@ -74,11 +74,11 @@ async function recreateDB() {
   // Delete everything
   await sugar.deleteMany();
   let instance1 = new
-    sugar({ sugar_Name: "Brownsugar", sugar_form: "crystal", cost: 10000 });
+    sugar({ sugar_Name: "Brownsugar", sugar_form: "crystal", Cost: "10000" });
   let instance2 = new
-    sugar({ sugar_Name: "Whitesugar", sugar_form: "crystal", cost: 20000 });
+    sugar({ sugar_Name: "Whitesugar", sugar_form: "crystal", Cost: "20000" });
   let instance3 = new
-    sugar({ sugar_Name: "crystalsugar", sugar_form: "soild crystal", cost: 10000 });
+    sugar({ sugar_Name: "crystalsugar", sugar_form: "soild crystal", Cost: "10000" });
   instance1.save().then(() => { console.log('First Object is created'); }).catch((e) => { console.log('There was an error', e.message); });
   instance2.save().then(() => { console.log('Second Object is created'); }).catch((e) => { console.log('There was an error', e.message); });
   instance3.save().then(() => { console.log('Third Object is created'); }).catch((e) => { console.log('There was an error', e.message); });

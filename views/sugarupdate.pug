@@ -1,0 +1,43 @@
+extends layout
+block content
+  h1= title
+  if toShow
+    - let sugarid = toShow._id
+    - let sugar_Name = toShow.sugar_Name
+    - let sugar_form = toShow.sugar_form
+    - let Cost = toShow.Cost
+
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{sugarid}
+      - let actionid = "/resource/sugar/" + sugarid
+      form(id='sugarForm', action= actionid, method="PUT")
+        div.form-group
+          label.sugarAttr(for='sugar_Name') grass name
+          input#sugar_Name(type='text', name='sugar_Name', value= sugar_Name )
+        div.form-group
+          label.sugarAttr(for='sugar_form') sugar form
+          input#sugar_form(type='text', name='sugar_form', value= sugar_form )
+        div.form-group
+          label.sugarAttr(for='Cost') Cost
+          input#Cost(type='text', name='Height', value= Cost )
+        input(type="submit")
+        script.
+          document.forms['Form'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+              method: 'PUT',
+              body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+              return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+              alert("Update succeeded")
+              // TODO handle body
+            }).catch((error) => {
+              // TODO handle error
+              alert("Update failed " + error )
+            });
+          });
+else
+    h2 No instance to delete

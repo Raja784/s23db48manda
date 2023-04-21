@@ -1,0 +1,23 @@
+extends layout
+block content
+ h1= title
+ if(toshow==null)
+    h2 no instance found 
+ else 
+    - let sugarid = toShow._id
+    - let sugar_Name = toShow.sugar_Name
+    - let sugar_form = toShow.sugar_form
+    - let Cost = toShow.Cost
+    div
+        div.row
+            div(class='sugarAttr mr-3') biscuit ID is:
+            div #{sugarid}
+        div.row
+            div(class='sugarAttr mr-3') sugar form is:
+            div #{sugar_form}
+        div.row
+            div(class='sugarAttr mr-3') sugar name is:
+            div #{sugar_Name}
+        div.row
+            div(class='sugarAttr mr-3') cost is:
+            div #{Cost}
