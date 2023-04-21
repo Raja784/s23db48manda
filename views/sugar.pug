@@ -1,22 +1,19 @@
 extends layout
 
 block content
-    h1= title
-    
-    //-
-     //let sugar  = [{"sugar_Name": "Brownsugar", "sugar_form": "crystal", "Cost": "10000",}, 
-     //{"sugar_Name": "Whitesugar", "sugar_form": "crystal", "Cost": "20000",},  
-     //{"sugar_Name": "crystalsugar", "sugar_form": "soild crystal", "Cost": "10000"},] 
-    - let result = results
-    div(class= "container-fluid")
-        div(class = "row")  
-            each item, index in results 
-                div(class= "col-sm-2", onclick=`sugar(${index})`) sugar_Name:#{item.sugar_Name}
-                div(class= "col-sm-2",onclick=`sugar(${index})`) sugar_form:  #{item.sugar_form}
-                div(class= "col-sm-2", onclick=`sugar(${index})`) Cost:   #{item.Cost}
-                
-    script.
-     function sugar(Index){
-        alert(`you have selected ${Index + 1}`)
-     }
-
+  h1= title
+  - let items = results;
+  div(class="container-fluid")
+    div(class="row")
+      each item,index in items
+        - let destination = `dispatch(\"/sugar/update?id=${item._id}\")`
+        div(class="col-sm-2" class="m-1")
+          p #{item.sugar_Name}
+          p #{item.sugar_form}
+          p #{item.Cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+      console.log(path);
+      window.location.href=path;
+    }
