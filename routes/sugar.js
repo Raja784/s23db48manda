@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 
-
+router.get('/',sugar_controllers.sugar_view_all_Page );
 router.get('/sugar/:id', sugar_controllers.sugar_detail);
 router.get('/detail', sugar_controllers.sugar_view_one_Page);
 router.get('/create', sugar_controllers.sugar_create_Page);

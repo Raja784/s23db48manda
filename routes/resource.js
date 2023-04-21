@@ -8,7 +8,7 @@ var sugar_controller = require('../controllers/sugar');
 router.get('/', api_controller.api);
 /// sugar ROUTES ///
 // POST request for creating a sugar.
-router.post('/sugar', sugar_controller.sugar_create_post);
+router.post('/sugars', sugar_controller.sugar_create_post);
 // DELETE request to delete sugar.
 router.delete('/sugars/:id', sugar_controller.sugar_delete);
 // PUT request to update sugar.
