@@ -1,4 +1,5 @@
 extends layout
+
 block content
   if toShow
     - let sugarid = toShow._id
@@ -19,24 +20,24 @@ block content
           input#sugar_form(type='text', name='sugar_form', value= sugar_form )
         div.form-group
           label.sugarAttr(for='Cost') Cost
-          input#Cost(type='text', name='Height', value= Cost )
+          input#Cost(type='text', name='Cost', value= Cost )
         input(type="submit")
-        script.
-          document.forms['sugarForm'].addEventListener('submit', (event) => {
-            event.preventDefault();
-            // TODO do something here to show user that form is being submitted
-            fetch(event.target.action, {
-              method: 'PUT',
-              body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-            }).then((resp) => {
-              return resp.json(); // or resp.text() or whatever the server sends
-            }).then((body) => {
-              alert("Update succeeded")
-              // TODO handle body
-            }).catch((error) => {
-              // TODO handle error
-              alert("Update failed " + error )
-            });
+      script.
+        document.forms['sugarForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show user that form is being submitted
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Update succeeded")
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Update failed, Give correct details " + error )
           });
+        });
   else
     h2 No instance to delete

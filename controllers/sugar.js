@@ -68,14 +68,14 @@ exports.sugar_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
 try {
-let toUpdate = await sugar.findById( req.params.id)
-// Do updates of properties
-if(req.body.sugar_Name) toUpdate.sugar_Name = req.body.sugar_Name;
-if(req.body.sugar_form) toUpdate.sugar_form = req.body.sugar_form;
-if(req.body.Cost) toUpdate.Cost = req.body.Cost;
-let result = await toUpdate.save();
-console.log("Sucess " + result)
-res.send(result)
+    let toUpdate = await sugar.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.sugar_Name) toUpdate.sugar_Name = req.body.sugar_Name;
+    if(req.body.sugar_form) toUpdate.sugar_form = req.body.sugar_form;
+    if(req.body.Cost) toUpdate.Cost = req.body.Cost;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
 } catch (err) {
 res.status(500)
 res.send(`{"error": ${err}: Update for id ${req.params.id}
